@@ -37,11 +37,6 @@ public class MainScript : MonoBehaviour {
 
             startTime = Time.time;
 
-			// TEst de modification de la position de la camera 
-			Vector3 temp = GetComponent<Camera>().transform.position; // copy to an auxiliary variable...
-			temp.x = lstBirds[idBird].transform.position.x; // modify the component you want in the variable...
-			GetComponent<Camera>().transform.position = temp; // and save the modified value 
-
 			followBird = true; // La camera suit l'oiseau lance
 
             addForceOnBirds();
@@ -50,19 +45,22 @@ public class MainScript : MonoBehaviour {
        
         // Si l'oiseau n'a pas touché le sol, il est automatiquement détruit au bout de 3 secondes
         elapsedTime = Time.time - startTime;
+		Vector3 posBird = lstBirds [idBird].transform.position;
 		if (startTime != 0f && currentBird != null && System.Math.Round (elapsedTime) == 3) {
-			destroyBird ();
-			followBird = false;
+			if (lstBirds [idBird].transform.position == posBird) {
+				destroyBird ();
+				followBird = false;
+			}
 		} 
-//			else {
-//			if(followBird)
-//			{
-//				// TEst de modification de la position de la camera 
-//				Vector3 temp = GetComponent<Camera>().transform.position; // copy to an auxiliary variable...
-//				temp.x = lstBirds[idBird].transform.position.x; // modify the component you want in the variable...
-//				GetComponent<Camera>().transform.position = temp; // and save the modified value 
-//			}
-//		}
+		else {
+			if(followBird)
+			{
+				// TEst de modification de la position de la camera 
+				Vector3 temp = GetComponent<Camera>().transform.position; // copy to an auxiliary variable...
+				temp.x = lstBirds[idBird -1].transform.position.x; // modify the component you want in the variable...
+				GetComponent<Camera>().transform.position = temp; // and save the modified value 
+			}
+		}
 			
 
     }

@@ -19,11 +19,11 @@ public class Collisions : MonoBehaviour {
         Debug.Log(this.gameObject.tag);
         Debug.Log(coll.gameObject.tag);
         // Si l'oiseau touche le sol après avoir été envoyé
-        if (this.gameObject.tag == "Bird" && coll.gameObject.tag == "Ground")
-        {
-            GameObject.Find("Main Camera").GetComponent<MainScript>().destroyBird();
-
-        }
+//        if (this.gameObject.tag == "Bird" && coll.gameObject.tag == "Ground")
+//        {
+//            GameObject.Find("Main Camera").GetComponent<MainScript>().destroyBird();
+//
+//        }
 
         // Si l'objectif a été touché
         if (this.gameObject.tag == "Goal" && coll.gameObject.tag == "Construction" && !goalValid)
