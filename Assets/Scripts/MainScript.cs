@@ -22,7 +22,7 @@ public class MainScript : MonoBehaviour {
     private float startTime = 0f;
     private float elapsedTime;
 
-	private bool followBird = false;
+	public bool followBird = false;
     // Update is called once per frame
     void Update () {
 		
@@ -31,17 +31,17 @@ public class MainScript : MonoBehaviour {
         txtScore.text = "Score : " + score; 
 
         // Propulser l'oiseau lors du clic sur le bouton gauche
-		if (Input.GetMouseButtonUp(0) && clicActive && idBird<= lstBirds.Count)
-        {
-            clicActive = false;
-
-            startTime = Time.time;
-
-			followBird = true; // La camera suit l'oiseau lance
-
-            addForceOnBirds();
-            
-        }
+//		if (Input.GetMouseButtonUp(0) && clicActive && idBird<= lstBirds.Count)
+//        {
+//            clicActive = false;
+//
+//            startTime = Time.time;
+//
+//			followBird = true; // La camera suit l'oiseau lance
+//
+//            addForceOnBirds();
+//            
+//        }
        
         // Si l'oiseau n'a pas touché le sol, il est automatiquement détruit au bout de 3 secondes
         elapsedTime = Time.time - startTime;
@@ -53,19 +53,25 @@ public class MainScript : MonoBehaviour {
 			}
 		} 
 		else {
+			Vector3 temp = GetComponent<Camera>().transform.position; // copy to an auxiliary variable...
 			if(followBird)
 			{
 				// TEst de modification de la position de la camera 
-				Vector3 temp = GetComponent<Camera>().transform.position; // copy to an auxiliary variable...
+
 				temp.x = lstBirds[idBird -1].transform.position.x; // modify the component you want in the variable...
 				GetComponent<Camera>().transform.position = temp; // and save the modified value 
 			}
+//			else
+//			{
+//				temp.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+//				GetComponent<Camera>().transform.position = temp;
+//			}
 		}
 			
 
     }
 
-    void addForceOnBirds()
+    public void addForceOnBirds()
     {
 
         //Debug.Log(Input.mousePosition.x - GameObject.Find("Slingshot").transform.position.x);
@@ -76,29 +82,18 @@ public class MainScript : MonoBehaviour {
         Rigidbody2D rb = lstBirds[idBird].GetComponent<Rigidbody2D>();
 
         // Force appliquée à l'oiseau pour l'envoyer 
-		var test = Vector2.Distance (lstBirds [idBird].transform.position, Input.mousePosition);
-		var testt = new Vector2 (lstBirds [idBird].transform.position.x + Input.mousePosition.x, lstBirds [idBird].transform.position.y + Input.mousePosition.y);
-		var testttt = new Vector2 (Input.mousePosition.x - lstBirds [idBird].transform.position.x , Input.mousePosition.y - lstBirds [idBird].transform.position.y);
-
-		float x = lstBirds [idBird].transform.position.x - Input.mousePosition.x;
-		float y = lstBirds [idBird].transform.position.y - Input.mousePosition.y;
 
 
-
-		Vector2 posCatapulte = lstBirds [idBird].transform.position;
-		Vector2 posMouse2 = Input.mousePosition;
 		Vector3 posMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//		posMouse.z = 0;
-//		gameObject.transform.position = pz;
+		Vector3 realMousePosition = new Vector3 (posMouse.x, posMouse.y, 0f);
 
+		//Debug.DrawLine(realMousePosition, catapult.transform.position, Color.red, 40000000000000);
 
-
-		Vector2 velocityTest = new Vector2 (lstBirds [idBird].transform.position.x + posMouse.x, lstBirds [idBird].transform.position.y + posMouse.y);
-		rb.velocity = new Vector2(10, 10);
-        //rb.velocity = new Vector2(Input.mousePosition.x, Input.mousePosition.y)*0.2f;
-        //rb.AddForce(new Vector2(Input.mousePosition.x , Input.mousePosition.y) * 2, ForceMode2D.Force);
-
-//        Debug.Log(/*"Diff : " + */GameObject.Find("Slingshot").transform.position.x - v3.x);
+		Vector3 lance = catapult.transform.position - realMousePosition;
+	
+		rb.velocity  = lance * 8f;
+		Debug.Log (Vector3.Distance(realMousePosition, catapult.transform.position));
+//		rb.AddForce(lance * 50f, ForceMode2D.Force); // new Vector2(Input.mousePosition.x , Input.mousePosition.y) * 2, ForceMode2D.Force
 
         // Incrémentation pour le prochain oiseau
         idBird++;
@@ -147,5 +142,8 @@ public class MainScript : MonoBehaviour {
             score = value;
         }
     }
-		
+
+
+
+
 }
