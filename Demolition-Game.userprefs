@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\MainScript.cs" Line="88" Column="72" />
-      <File FileName="Assets\Scripts\DragAndDrop.cs" Line="28" Column="43" />
+      <File FileName="Assets\Scripts\MainScript.cs" Line="41" Column="35" />
+      <File FileName="Assets\Scripts\DragAndDrop.cs" Line="27" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="C:\Users\i151824\Documents\GitHub\Demolition-Game\Assets\Scripts\MainScript.cs" line="90" />
+      <Breakpoint file="C:\Users\i151824\Documents\GitHub\Demolition-Game\Assets\Scripts\MainScript.cs" line="90" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
