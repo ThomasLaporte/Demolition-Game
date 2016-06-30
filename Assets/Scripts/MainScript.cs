@@ -14,19 +14,16 @@ public class MainScript : MonoBehaviour {
 
 	private int score = 0;
 
-	// Test  time 
 	private GameObject currentBird;
-	private float startTime = 0f;
+	public float startTime = 0f;
 	private float elapsedTime;
 	private Vector3 initialCamPos; // Position initiale de la caméra 
-	private Vector3 initialBirdPos;
 
 	public bool followBird = false;
 
 	void Start()
 	{
 		initialCamPos = GetComponent<Camera>().transform.position;
-		initialBirdPos = lstBirds [0].transform.position;
 	}
 
 	void Update () {
@@ -36,14 +33,17 @@ public class MainScript : MonoBehaviour {
 		// Si l'oiseau n'a pas touché le sol, il est automatiquement détruit au bout de 3 secondes
 		elapsedTime = Time.time - startTime;
 		//Vector3 posBird = lstBirds [idBird].transform.position;
-		Vector3 posBird = initialBirdPos;
+		Vector3 posBird = catapult.transform.position;
 
 		if(idBird <= lstBirds.Count -1) 
 		{posBird= lstBirds [idBird].transform.position;}
-		if (startTime != 0f && currentBird != null && System.Math.Round (elapsedTime) == 5) {
+		if (startTime != 0f && currentBird != null && System.Math.Round (elapsedTime) == 3) {
 			if (lstBirds [idBird].transform.position == posBird) {
 				destroyBird ();
 				followBird = false;
+
+				// Incrémentation pour le prochain oiseau
+				idBird++;
 			}
 		} 
 		else {
@@ -51,18 +51,13 @@ public class MainScript : MonoBehaviour {
 			if(followBird)
 			{
 				// La camera suit la position de l'oiseau qui est jeté
-				posCamFollowBird.x = lstBirds[idBird -1].transform.position.x; 
+				posCamFollowBird.x = lstBirds[idBird].transform.position.x; 
 				GetComponent<Camera>().transform.position = posCamFollowBird; 
 			}
 			else
 			{
 				GetComponent<Camera>().transform.position = initialCamPos;
 			}
-			//			else
-			//			{
-			//				temp.x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-			//				GetComponent<Camera>().transform.position = temp;
-			//			}
 		}
 
 
@@ -70,7 +65,6 @@ public class MainScript : MonoBehaviour {
 
 	public void addForceOnBirds()
 	{
-		startTime = Time.time;
 		//Debug.Log(Input.mousePosition.x - GameObject.Find("Slingshot").transform.position.x);
 		currentBird = lstBirds[idBird];
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -88,8 +82,7 @@ public class MainScript : MonoBehaviour {
 		rb.velocity  = lance * 12f;
 		//		rb.AddForce(lance * 50f, ForceMode2D.Force); // new Vector2(Input.mousePosition.x , Input.mousePosition.y) * 2, ForceMode2D.Force
 
-		// Incrémentation pour le prochain oiseau
-		idBird++;
+
 	}
 
 	/// <summary>
@@ -114,8 +107,8 @@ public class MainScript : MonoBehaviour {
 
 		if (idBird <= lstBirds.Count - 1)
 		{
-			lstBirds[idBird].transform.position = initialBirdPos; //new Vector2(-6.5f, -3f); // Positionnement de l'oiseau dans le lance-pierre
-			Rigidbody2D rb = lstBirds[idBird].GetComponent<Rigidbody2D>();
+			lstBirds[idBird + 1].transform.position = catapult.transform.position; //new Vector2(-6.5f, -3f); // Positionnement de l'oiseau dans le lance-pierre
+			Rigidbody2D rb = lstBirds[idBird + 1].GetComponent<Rigidbody2D>();
 
 			rb.Sleep(); // Permet d'éviter à l'oiseau de tomber une fois qu'on a changé sa position
 			clicActive = true;
@@ -125,17 +118,7 @@ public class MainScript : MonoBehaviour {
 
 	public int Score
 	{
-		get
-		{
-			return score;
-		}
-		set
-		{
-			score = value;
-		}
+		get{return score;}
+		set{score = value;}
 	}
-
-
-
-
 }

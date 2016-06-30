@@ -16,6 +16,8 @@ public class Collisions : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D coll)
     {
+		MainScript mainScript = GameObject.Find ("Main Camera").GetComponent<MainScript> ();
+
         Debug.Log(this.gameObject.tag);
         Debug.Log(coll.gameObject.tag);
         // Si l'oiseau touche le sol après avoir été envoyé
@@ -30,12 +32,16 @@ public class Collisions : MonoBehaviour {
         {
             goalValid = true;
             // On change la position du texte affichant le nom bre de points gagnés
-            GameObject.Find("Main Camera").GetComponent<MainScript>().txtMessage.text = " + 3000 pts !";
-            GameObject.Find("Main Camera").GetComponent<MainScript>().txtMessage.transform.position = this.gameObject.transform.position;
+			mainScript.txtMessage.text = " + 3000 pts !";
+			mainScript.txtMessage.transform.position = this.gameObject.transform.position;
             Debug.Log("GAGNE");
 
             GameObject.Find("Main Camera").GetComponent<MainScript>().Score = GameObject.Find("Main Camera").GetComponent<MainScript>().Score + 3000;
         }
+
+
+		if (this.gameObject.name == mainScript.lstBirds[mainScript.getIdBird].name  && (coll.gameObject.tag == "Construction" || coll.gameObject.tag == "Ground"))
+			mainScript.startTime = Time.time;
     }
 
 }
