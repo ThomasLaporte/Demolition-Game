@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bb065b91b5b548d4ea7766754e883190
-timeCreated: 1462825059
+timeCreated: 1467407574
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: angry_birds_3
     21300008: angry_birds_4
     21300010: angry_birds_5
+    21300012: angry_birds_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -169,6 +170,23 @@ TextureImporter:
         - {x: 22.5, y: -22}
         - {x: 22.5, y: 13}
         - {x: 13.5, y: 22}
+    - name: angry_birds_6
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 27
+        width: 57
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 25}
+        - {x: -28.5, y: 9}
+        - {x: -28.5, y: -25}
+        - {x: 28.5, y: -25}
+        - {x: 28.5, y: -2}
+        - {x: 8.5, y: 25}
     outline: []
   spritePackingTag: 
   userData: 

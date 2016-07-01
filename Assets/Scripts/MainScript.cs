@@ -8,6 +8,8 @@ public class MainScript : MonoBehaviour {
 	public Text txtMessage, txtScore;
 	//	public GameObject camera;
 	public GameObject catapult;
+	public GameObject endGameScreen;
+
 
 	public bool clicActive = true;
 	private int idBird = 0;
@@ -36,21 +38,20 @@ public class MainScript : MonoBehaviour {
 		//Vector3 posBird = lstBirds [idBird].transform.position;
 		Vector3 posBird = catapult.transform.position;
 
-		if(idBird <= lstBirds.Count -1) 
-		{
-			posBird= lstBirds [idBird].transform.position;
-		}
+		if (idBird <= lstBirds.Count - 1) {
+			posBird = lstBirds [idBird].transform.position;
+		} 
 
 		if (startTime != 0f && System.Math.Round (elapsedTime) == 3 && !showScore && currentBird!= null) {
 			txtMessage.gameObject.SetActive(true);
-			txtMessage.transform.position = new Vector3(currentBird.transform.position.x, currentBird.transform.position.y +10, -1);
+			txtMessage.transform.position = new Vector3(currentBird.transform.position.x, currentBird.transform.position.y +0.5f, txtMessage.transform.position.z);
 			txtMessage.text = "+ 100pts";
 
 			score += 100; // Incrementation du score
 			showScore = true;
 		}
 			
-		if (startTime != 0f && currentBird != null && System.Math.Round (elapsedTime) == 4.5f) {
+		if (startTime != 0f && currentBird != null && System.Math.Round (elapsedTime) == 4) {
 			if (lstBirds [idBird].transform.position == posBird) {
 				destroyBird ();
 				followBird = false;
@@ -74,7 +75,12 @@ public class MainScript : MonoBehaviour {
 			}
 		}
 
-
+		// Si c'est l'oiseau jaune, on lance une en x
+		if (Input.GetMouseButtonDown (0) && lstBirds [idBird].name.Contains("yellow") && lstBirds [idBird].transform.position.x > catapult.transform.position.x) {
+			Rigidbody2D rb = lstBirds[idBird].GetComponent<Rigidbody2D>();
+			rb.AddForce (Vector2.right * 30, ForceMode2D.Impulse);
+		}
+			
 	}
 
 	public void addForceOnBirds()
@@ -91,10 +97,11 @@ public class MainScript : MonoBehaviour {
 
 //		Debug.DrawLine(realMousePosition, catapult.transform.position, Color.red, 40000000000000);
 
-		Vector3 lance = catapult.transform.position - lstBirds [idBird].transform.position;//realMousePosition;
+		// On détermine la direction du lance en fonction de la position de l'oiseau pendant le drag and drop et la catapulte
+		Vector3 lance = catapult.transform.position - lstBirds [idBird].transform.position;
 
+		// On applique une velocitée à l'oiseau dans la direction définie
 		rb.velocity  = lance * 12f;
-		//		rb.AddForce(lance * 50f, ForceMode2D.Force); // new Vector2(Input.mousePosition.x , Input.mousePosition.y) * 2, ForceMode2D.Force
 
 
 	}
@@ -112,11 +119,7 @@ public class MainScript : MonoBehaviour {
 	/// </summary>
 	public void destroyBird()
 	{
-//		txtMessage.transform.position = currentBird.transform.position;
-//		txtMessage.text = "+ 100pts";
-//
-//		score += 100; // Incrementation du score
-
+		// Suppression de l'oiseau en court
 		Destroy(currentBird);
 
 		if (idBird < lstBirds.Count - 1)

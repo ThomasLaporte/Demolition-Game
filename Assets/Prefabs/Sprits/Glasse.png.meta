@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: b5c6d56c18b028145b9429a2866bd7d9
-timeCreated: 1467316930
+timeCreated: 1467406489
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Glasse_0
     21300002: Glasse_1
+    21300004: Glasse_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -80,6 +81,21 @@ TextureImporter:
         - {x: 42, y: -42}
         - {x: 42, y: 10}
         - {x: 6, y: 42}
+    - name: Glasse_2
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 222
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 20}
+        - {x: -20.5, y: -20}
+        - {x: 20.5, y: -20}
+        - {x: 20.5, y: 20}
     outline: []
   spritePackingTag: 
   userData: 

@@ -3,7 +3,7 @@
 public class Collisions : MonoBehaviour {
 
     private bool goalValid = false;
-
+	public bool hit = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -31,17 +31,17 @@ public class Collisions : MonoBehaviour {
         if (this.gameObject.tag == "Goal" && coll.gameObject.tag == "Construction" && !goalValid)
         {
             goalValid = true;
-            // On change la position du texte affichant le nom bre de points gagnés
-			mainScript.txtMessage.text = " + 3000 pts !";
-			mainScript.txtMessage.transform.position = this.gameObject.transform.position;
-            Debug.Log("GAGNE");
-
+            // On change la position du texte affichant le nombre de points gagnés
             GameObject.Find("Main Camera").GetComponent<MainScript>().Score = GameObject.Find("Main Camera").GetComponent<MainScript>().Score + 3000;
+			mainScript.endGameScreen.SetActive (true);
+
         }
 
 
-		if (this.gameObject.name == mainScript.lstBirds[mainScript.getIdBird].name  && (coll.gameObject.tag == "Construction" || coll.gameObject.tag == "Ground"))
+		if (this.gameObject.name == mainScript.lstBirds [mainScript.getIdBird].name && (coll.gameObject.tag == "Construction" || coll.gameObject.tag == "Ground") && hit == false) {
 			mainScript.startTime = Time.time;
+			hit = true;
+		}
     }
 
 }
