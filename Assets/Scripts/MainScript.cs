@@ -20,6 +20,7 @@ public class MainScript : MonoBehaviour {
 	private Vector3 initialCamPos; // Position initiale de la caméra 
 
 	public bool followBird = false;
+	private bool showScore = false;
 
 	void Start()
 	{
@@ -36,11 +37,24 @@ public class MainScript : MonoBehaviour {
 		Vector3 posBird = catapult.transform.position;
 
 		if(idBird <= lstBirds.Count -1) 
-		{posBird= lstBirds [idBird].transform.position;}
-		if (startTime != 0f && currentBird != null && System.Math.Round (elapsedTime) == 3) {
+		{
+			posBird= lstBirds [idBird].transform.position;
+		}
+
+		if (startTime != 0f && System.Math.Round (elapsedTime) == 3 && !showScore && currentBird!= null) {
+			txtMessage.gameObject.SetActive(true);
+			txtMessage.transform.position = new Vector3(currentBird.transform.position.x, currentBird.transform.position.y +10, -1);
+			txtMessage.text = "+ 100pts";
+
+			score += 100; // Incrementation du score
+			showScore = true;
+		}
+			
+		if (startTime != 0f && currentBird != null && System.Math.Round (elapsedTime) == 4.5f) {
 			if (lstBirds [idBird].transform.position == posBird) {
 				destroyBird ();
 				followBird = false;
+				showScore = false;
 
 				// Incrémentation pour le prochain oiseau
 				idBird++;
@@ -98,14 +112,14 @@ public class MainScript : MonoBehaviour {
 	/// </summary>
 	public void destroyBird()
 	{
-		txtMessage.transform.position = currentBird.transform.position;
-		txtMessage.text = "+ 100pts";
-
-		score += 100; // Incrementation du score
+//		txtMessage.transform.position = currentBird.transform.position;
+//		txtMessage.text = "+ 100pts";
+//
+//		score += 100; // Incrementation du score
 
 		Destroy(currentBird);
 
-		if (idBird <= lstBirds.Count - 1)
+		if (idBird < lstBirds.Count - 1)
 		{
 			lstBirds[idBird + 1].transform.position = catapult.transform.position; //new Vector2(-6.5f, -3f); // Positionnement de l'oiseau dans le lance-pierre
 			Rigidbody2D rb = lstBirds[idBird + 1].GetComponent<Rigidbody2D>();
@@ -114,6 +128,7 @@ public class MainScript : MonoBehaviour {
 			clicActive = true;
 		}
 		startTime = 0f;
+		txtMessage.gameObject.SetActive(false);
 	}
 
 	public int Score
