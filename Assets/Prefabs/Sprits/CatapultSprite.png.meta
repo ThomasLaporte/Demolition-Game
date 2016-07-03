@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3b1906470e7edb84299f673df469179c
-timeCreated: 1467555962
+guid: 54421d2d72306cb4aa9237a1044070ff
+timeCreated: 1467474984
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: wood_0
-    21300002: wood_1
+    21300000: CatapultSprite_0
+    21300002: CatapultSprite_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,34 +52,45 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: wood_0
+    - name: CatapultSprite_0
       rect:
         serializedVersion: 2
-        x: 295
-        y: 236
-        width: 167
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: wood_1
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 334
-        width: 83
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 109
+        y: 26
+        width: 42
+        height: 200
+      alignment: 9
+      pivot: {x: 0.24865033, y: 0.8680184}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -9.5, y: 41}
-        - {x: -41.5, y: -27}
-        - {x: -41.5, y: -41}
-        - {x: 41.5, y: -41}
-        - {x: 41.5, y: -27}
-        - {x: 6.5, y: 41}
+      - - {x: -10.443314, y: 26.396317}
+        - {x: -10.443314, y: -134.60368}
+        - {x: -3.4433136, y: -169.60368}
+        - {x: -0.4433136, y: -172.60368}
+        - {x: 25.556686, y: -172.60368}
+        - {x: 30.556686, y: -171.60368}
+        - {x: 31.556686, y: -169.60368}
+        - {x: 31.556686, y: -125.60368}
+        - {x: 23.556686, y: 26.396317}
+    - name: CatapultSprite_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 109
+        width: 61
+        height: 117
+      alignment: 9
+      pivot: {x: 0.32693943, y: 0.7180515}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.943306, y: 32.987976}
+        - {x: -6.943306, y: -75.012024}
+        - {x: -5.943306, y: -80.012024}
+        - {x: 17.056694, y: -84.012024}
+        - {x: 41.056694, y: -84.012024}
+        - {x: 41.056694, y: -38.012024}
+        - {x: 35.056694, y: 17.987976}
+        - {x: 26.056694, y: 32.987976}
     outline: []
   spritePackingTag: 
   userData: 

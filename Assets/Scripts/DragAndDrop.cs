@@ -24,16 +24,13 @@ public class DragAndDrop : MonoBehaviour {
 
 		Vector3 posMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector3 realMousePosition = new Vector3 (posMouse.x, posMouse.y, 0f);
-		Vector3 posCatapulte = new Vector3(mainScript.catapult.transform.position.x,mainScript.catapult.transform.position.y, 0f);
-
+		Vector3 posCatapulte = new Vector3(mainScript.posBirdInSlingshot.transform.position.x,mainScript.posBirdInSlingshot.transform.position.y, 0f);
 	
-		//lstBirds [0].transform.position = Input.mousePosition;
-		Vector3 testt = posCatapulte;
-		Vector2 test = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
+
+		Vector2 svgPosMouse = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 		if (Mathf.Round(Vector3.Distance (realMousePosition, posCatapulte)) < 2f) {
 			posBird = realMousePosition;
-			testt = realMousePosition;
-			lstBirds [birdID].transform.position = test;
+			lstBirds [birdID].transform.position = svgPosMouse;
 			lstBirds [birdID].transform.rotation = new Quaternion(0,0,0,0);
 		} else
 			lstBirds [birdID].transform.position = posBird;

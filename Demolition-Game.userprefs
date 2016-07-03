@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EndLevel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MainScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\MainScript.cs" Line="81" Column="35" />
-      <File FileName="Assets\Scripts\DragAndDrop.cs" Line="10" Column="2" />
-      <File FileName="Assets\Scripts\Collisions.cs" Line="34" Column="63" />
-      <File FileName="Assets\Scripts\EndLevel.cs" Line="16" Column="28" />
+      <File FileName="Assets\Scripts\MainScript.cs" Line="114" Column="32" />
+      <File FileName="Assets\Scripts\ScreensScript.cs" Line="35" Column="2" />
+      <File FileName="Assets\Scripts\DragAndDrop.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\Collisions.cs" Line="27" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

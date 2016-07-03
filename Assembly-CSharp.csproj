@@ -47,8 +47,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Collisions.cs" />
      <Compile Include="Assets\Scripts\DragAndDrop.cs" />
-     <Compile Include="Assets\Scripts\EndLevel.cs" />
      <Compile Include="Assets\Scripts\MainScript.cs" />
+     <Compile Include="Assets\Scripts\ScreensScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Programmes/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
